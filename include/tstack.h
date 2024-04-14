@@ -1,12 +1,13 @@
 // Copyright 2021 NNTU-CS
 #ifndef INCLUDE_TSTACK_H_
 #define INCLUDE_TSTACK_H_
+#include "string"
 
 template<typename T, int size>
 class TStack {
-  // добавьте код стека
-  private:
+ private:
   T data[size];
+
  public:
   int top;
   TStack() : top(0) {}
@@ -38,7 +39,6 @@ class TStack {
   bool isEmpty() const {
     return top == 0;
   }
-};
 };
 
 #endif  // INCLUDE_TSTACK_H_
