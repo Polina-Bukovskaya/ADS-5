@@ -6,6 +6,7 @@
 bool isNum(char c) {
   return (c >= '0' && c <= '9');
 }
+
 int getPriority(char operation) {
   switch (operation) {
     case '(': return 0;
@@ -14,9 +15,11 @@ int getPriority(char operation) {
     case '-': return 2;
     case '*': return 3;
     case '/': return 3;
+
     default: return -1;
   }
 }
+
 std::vector<std::string> toTokenArray(std::string s) {
   std::vector<std::string> result;
   std::string buf = "";
@@ -33,10 +36,10 @@ std::vector<std::string> toTokenArray(std::string s) {
     }
   }
   result.push_back(buf);
+
   return result;
 }
 std::string infx2pstfx(std::string inf) {
-  // добавьте код
   std::vector<std::string> arr = toTokenArray(inf);
   TStack<std::string, 300> stek;
   std::string result;
@@ -54,6 +57,8 @@ std::string infx2pstfx(std::string inf) {
       stek.pop();
       continue;
     }
+
+    // Если знак операции т.е всё кроме цифры
     if (!isNum(i[0])) {
       if (stek.isEmpty()
           || i[0] == '('
@@ -70,6 +75,8 @@ std::string infx2pstfx(std::string inf) {
       continue;
     }
   }
+
+  // Конец строки
   while (!stek.isEmpty()) {
     result += stek.pop();
     result += ' ';
@@ -79,6 +86,7 @@ std::string infx2pstfx(std::string inf) {
   }
   return result;
 }
+
 int doMath(int num1, int num2, char operation) {
   switch (operation) {
     case '+': return num1 + num2;
@@ -89,7 +97,6 @@ int doMath(int num1, int num2, char operation) {
 }
 
 int eval(std::string pref) {
-  // добавьте код
   std::string temp;
   TStack<int, 300> stek;
   for (int i = 0; i < pref.length(); i++) {
@@ -105,6 +112,7 @@ int eval(std::string pref) {
       temp = "";
       continue;
     }
+
     if (!isNum(pref[i])) {
       int num1 = stek.pop();
       int num2 = stek.pop();
