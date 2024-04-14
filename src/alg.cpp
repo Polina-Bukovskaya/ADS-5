@@ -6,7 +6,6 @@
 bool isNum(char c) {
   return (c >= '0' && c <= '9');
 }
-
 int getPriority(char operation) {
   switch (operation) {
     case '(': return 0;
